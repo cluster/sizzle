@@ -698,7 +698,12 @@ for ( var type in Expr.match ) {
 }
 
 var makeArray = function(array, results) {
-	array = Array.prototype.slice.call( array, 0 );
+	//need to be modified for blackberry compatibility... as BB browser doesn't fully support the Array.prototype.slice.call function
+var testArray = array;
+array = Array.prototype.slice.call( testArray, 0 );
+for (var i=0;i<testArray.length;i++) 
+		array[i]=testArray[i];
+		
 
 	if ( results ) {
 		results.push.apply( results, array );
